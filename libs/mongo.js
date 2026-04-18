@@ -1,21 +1,3 @@
-const { MongoClient }   = require('mongodb')
-
-const   db_protocol     = `mongodb+srv://`,
-            db_path         = ``,
-            db_host         = `cluster0.xbletfk.mongodb.net`,  
-            db_port         = ``,    
-            db_url          = db_protocol+db_host+db_port+db_path
-let authuser = 
-{
-                    username: `admin_db`, 
-                    password: `n8YNkfHuok4O5Q96`
-}
-let options = 
-{            
-                    auth: authuser ,
-           authMechanism: `SCRAM-SHA-1`
-}
-
 async function runMongo()
 {
     const insertResult = await mongofunc.insert( 'testdb','test', [{ a: 1 }, { a: 2 }, { a: 3 }] )
