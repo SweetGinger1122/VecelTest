@@ -1,3 +1,4 @@
+const mongofunc         = require('./mongofunc')
 async function runMongo()
 {
     const insertResult = await mongofunc.insert( 'testdb','test', [{ a: 1 }, { a: 2 }, { a: 3 }] )
