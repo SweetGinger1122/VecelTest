@@ -50,7 +50,7 @@ async function insert(dbname, colname, queryobj)
 {
     let result              = []
     const dbconn            = await connect()
-    const collection        = collection(dbconn, dbname, colname)  
+    const collection        = getCollection(dbconn, dbname, colname)  
     if(Array.isArray(queryobj)){
         result              = await collection.insertMany(queryobj)
     }else{
