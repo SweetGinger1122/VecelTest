@@ -16,24 +16,20 @@ let options =
            authMechanism: `SCRAM-SHA-1`
 }
 
-async function runMongo( )
+async function runMongo()
 {
-  const dbconn = await MongoClient.connect(db_url, options);
-  const db = dbconn.db('testDB')
- 
-  console.log('Connected to MongoDB')
+    const insertResult = await mongofunc.insert( 'testdb','test', [{ a: 1 }, { a: 2 }, { a: 3 }] )
+    console.log( insertResult )
 
-  const collection = db.collection('testdoc')
+    const updresult  = await mongofunc.update( 'testdb','test', { a:3 }, { $set: { a: 4 , name : "Golf"} } )
+    const remres  = await mongofunc.remove('testdb','test', { a:2 } )
+    const result  = await mongofunc.find('testdb','test',{})
 
-  const insertResult = await collection.insertMany([{ a: 1 }, { a: 2 }, { a: 3 }])
-  console.log( insertResult )
-
-  const findResult = await collection.find({})
-  for await (const doc of findResult) {
-    console.log(doc);
-  }
-  await dbconn.close()
+    for (const doc of result) {
+        console.log(doc);
+    }
 }
+
 
 module.exports = 
 {
